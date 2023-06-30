@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="cabecalho :: head"></div>
+
+	<title>Crud  - setor</title>
+</head>
+
+<body>
+	<div class="container my-2">
+		<h2>Setor</h2>
+		<form action="#" th:action="@{/setores/new}" th:object="${setor}" method="POST">
+
+			<input type="hidden" th:field="*{id}" id="id">
+			
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<input type="text" th:field="*{nome}" placeholder="Nome do setor" class="form-control mb-4 col-4"> 
+			
+			<span th:if="${#fields.hasErrors('responsavelSet')}" th:errors="*{responsavelSet}" class="text-danger"></span>
+			<input type="text" th:field="*{responsavelSet}" placeholder="Responsável pelo setor" class="form-control mb-4 col-4">
+			
+			<span th:if="${#fields.hasErrors('horario')}" th:errors="*{horario}" class="text-danger"></span>
+			<input type="text" th:field="*{horario}" placeholder="Horario de funcionamento" class="form-control mb-4 col-4">
+			
+	<select th:field="*{funcao}" class="form-control mb-4 col-4">
+    <option value="DEV" th:selected="${setor.funcao == 'DEV'}">DEV</option>
+    <option value="TAE" th:selected="${setor.funcao == 'TAE'}">TAE</option>
+</select>
+					
+			<button type="submit" class="btn col-2" style="background-color: #359830; color:#FFFFFF;">Salvar</button>
+		</form>
+		<hr>
+		<a th:field="@{/setores}" href="/setores">Setores</a>
+	</div>F
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<div th:replace="cabecalho :: head"></div>
+		
+		<title>Crud Manager - Times</title>
+	</head>
+	<body>
+
+<div th:replace="menu :: body"></div>
+
+		<div class="container my-2">
+			<h1>Times</h1>
+			<div>				
+				<a th:href="@{/times/form}" class="btn btn-md mb-3 float-right" style="background-color: #0c24ab; color:#FFFFFF;">
+		   			Adicionar Time
+        </a>
+			</div>
+			<table class="table table-striped table-responsive-md">
+				<thead>
+					<tr>
+						<th>Nome do Time</th>
+						<th>Liga que participa</th>
+						<th>Tecnico responsável pelo time</th>
+						<th>Possui Titulos?</th>
+						<th>Funções</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="t : ${times}">
+						<td th:text="${t.nome}"></td>
+						<td th:text="${t.liga}"></td>
+						<td th:text="${t.tecnico}"></td>
+						<td th:text="${t.titulos}"></td>
+						<td>
+							<a th:href="@{/times/update/{id}(id=${t.id})}" class="btn" style="background-color:#0c24ab; color:#FFFFFF;">Alterar</a>
+							
+							<a th:href="@{/times/delete/{id}(id=${t.id})}" class="btn btn-danger">Excluir</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

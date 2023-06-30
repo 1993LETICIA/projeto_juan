@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<div th:replace="cabecalho :: head"></div>
+
+	<title>Crud Manager - Funcionario</title>
+</head>
+
+<body>
+	<div class="container my-2">
+		<h2>Funcionario</h2>
+		<form action="#" th:action="@{/funcionarios/new}" th:object="${funcionario}" method="POST">
+			<input type="hidden" th:field="*{id}" id="id">
+			
+			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+			<input type="text" th:field="*{nome}" placeholder="Nome do Funcionario" class="form-control mb-4 col-4"> 
+			
+		
+			<span th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}" class="text-danger"></span>
+			<input type="text" th:field="*{funcao}" placeholder="Função que exerce" class="form-control mb-4 col-4">
+			
+			<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+			<input type="text" th:field="*{email}" placeholder="Email do funcionario" class="form-control mb-4 col-4">
+			
+			<div class="form-group">
+			    <label for="setor">Setor do Funcionario(a)</label>
+    <select class="form-control" id="setor" th:field="*{setor.id}">
+        <option value="">Selecione um setor para o Funcionario</option>
+        <option th:each="setor : ${setores}" th:value="${setor.id}" th:text="${setor.getNome()}"></option>
+    </select>
+			</div>
+			
+			<button type="submit" class="btn col-2" style="background-color:#0c24ab; color:#FFFFFF;">Salvar</button>
+		</form>
+		<hr>
+		<a th:field="@{/funcionarios}" href="/funcionarios">Funcionarios</a>
+	</div>
+</body>
+</html>
